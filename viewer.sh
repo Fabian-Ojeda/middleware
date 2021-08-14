@@ -1,4 +1,5 @@
 #!/bin/bash
+
 while :
 do
 
@@ -12,5 +13,5 @@ echo Servidor caido
 date +"%d %m %y - %H:%M google.com Caido">>info.log
 fi
 
-sleep 2m
+sleep 2
 done
