@@ -4,7 +4,7 @@ const Shell = require('shelljs')   //Crea shell para la ejecución de scripts
 const exec = require('child_process').exec //Este si ejecuta procesos
 const lineReader = require('line-reader'); //Para leer linea por linea el archivo log
 
-var answer = []
+var answer = ['Esto fue seteado']
 
 
 
