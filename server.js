@@ -4,30 +4,31 @@ const Shell = require('shelljs')   //Crea shell para la ejecución de scripts
 const exec = require('child_process').exec //Este si ejecuta procesos
 const lineReader = require('line-reader'); //Para leer linea por linea el archivo log
 
-var answer = ['Esto fue seteado']
+var answer = []
 
 
 
 function leerEstatus(){
+
     lineReader.eachLine('./info.log', function (line) {
-        if (answer.length >= 1) {
+        if (answer.length >= 2) {
             answer.shift();
         }
         answer.push(line)
     });
-    return answer[0]
 }
     
-
 
 
 //Shell.exec('./viewer.sh')
 const myShellScript = exec('bash viewer.sh')
 
 app.get('/', (req, res) => {
-    var state = leerEstatus()
-    console.log(state)
-    res.send(""+state)
+    leerEstatus()
+    setTimeout(function() {
+        res.send(""+answer[0])
+    },5000);
+    
 })
 
 app.listen(3030, () => {
