@@ -26,8 +26,10 @@ const myShellScript = exec('bash viewer.sh')
 app.get('/', (req, res) => {
     leerEstatus()
     setTimeout(function() {
-        res.send(""+answer[0])
-    },5000);
+        var data = JSON.stringify(answer)
+        res.status(200)
+        res.send(data)
+    },4000);
     
 })
 
