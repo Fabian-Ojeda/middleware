@@ -6,7 +6,21 @@ const lineReader = require('line-reader'); //Para leer linea por linea el archiv
 const cors = require('cors');
 var answer = []
 
+const config = {
+    application: {
+        cors: {
+            server: [
+                {
+                    origin: ('*'), 
+                    credentials: true
+                }
+            ]
+        }}
+}
 
+app.use(cors(
+    config.application.cors.server
+));
 
 function leerEstatus(){
 
@@ -21,9 +35,7 @@ function leerEstatus(){
 //Shell.exec('./viewer.sh')
 const myShellScript = exec('bash viewer.sh')
 
-app.use(cors(
-    config.application.cors.server
-));
+
 
 app.get('/', (req, res) => {
     leerEstatus()
@@ -35,17 +47,7 @@ app.get('/', (req, res) => {
     
 })
 
-const config = {
-    application: {
-        cors: {
-            server: [
-                {
-                    origin: ('*'), 
-                    credentials: true
-                }
-            ]
-        }
-}
+
 
 app.listen(3030, () => {
     console.log('el middleware esta corriendo en el puerto 3030')
