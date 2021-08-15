@@ -3,7 +3,7 @@ const app = express()              //crear una nueva aplicación
 const Shell = require('shelljs')   //Crea shell para la ejecución de scripts
 const exec = require('child_process').exec //Este si ejecuta procesos
 const lineReader = require('line-reader'); //Para leer linea por linea el archivo log
-
+const cors = require('cors');
 var answer = []
 
 
@@ -17,11 +17,13 @@ function leerEstatus(){
         answer.push(line)
     });
 }
-    
-
 
 //Shell.exec('./viewer.sh')
 const myShellScript = exec('bash viewer.sh')
+
+app.use(cors(
+    config.application.cors.server
+));
 
 app.get('/', (req, res) => {
     leerEstatus()
