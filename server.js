@@ -35,6 +35,18 @@ app.get('/', (req, res) => {
     
 })
 
+const config = {
+    application: {
+        cors: {
+            server: [
+                {
+                    origin: ('*'), 
+                    credentials: true
+                }
+            ]
+        }
+}
+
 app.listen(3030, () => {
     console.log('el middleware esta corriendo en el puerto 3030')
 })
